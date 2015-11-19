@@ -1,0 +1,78 @@
+Sum All Numbers in a Range
+
+We'll pass you an array of two numbers. Return the sum of those two numbers and all numbers between them.
+
+The lowest number will not always come first.
+
+sumAll([1, 4]) should return 10.
+sumAll([4, 1]) should return 10.
+
+
+function sumAll(arr) {
+  var i,store=new Array(),a,b,y;
+var end=Math.max(arr[0],arr[1]);
+var start = Math.min(arr[0],arr[1]);
+
+
+for(i=0;i<=end-start;i++){
+    
+    
+    store[0]=start;
+    
+    store[i]=store[i-1]+1;
+}
+if (!Array.prototype.reduce)
+         {
+            Array.prototype.reduce = function(fun /*, initial*/)
+            {
+               var len = this.length;
+               
+               if (typeof fun != "function")
+               throw new TypeError();
+               
+               // no value to return if no initial value and an empty array
+               if (len == 0 && arguments.length == 1)
+               throw new TypeError();
+               
+               var i = 0;
+               if (arguments.length >= 2)
+               {
+                  var rv = arguments[1];
+               }
+               else
+               {
+                  do
+                  {
+                     if (i in this)
+                     {
+                        rv = this[i++];
+                        break;
+                     }
+                     // if array contains no values, no initial value to return
+                     if (++i >= len)
+                     throw new TypeError();
+                  }
+                  while (true);
+               }
+               
+               for (; i < len; i++)
+               {
+                  if (i in this)
+                  rv = fun.call(null, rv, this[i], i, this);
+               }
+               return rv;
+            };
+         }
+         var total = store.reduce(function(a, b){ return a + b; });
+         
+         return total;
+
+               
+}
+
+
+
+sumAll([0, 4]);
+
+
+ 
